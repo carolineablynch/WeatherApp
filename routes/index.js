@@ -10,3 +10,12 @@ get("/api/autocomplete/:city", async (req, res) => {
   
     res.json(cities);
   });
+
+  router.get("/api/weather/:lat/:lng", async (req, res) => {
+    const { lat, lng } = req.params;
+  
+    try {
+      const weather = await fetch(
+        `https://api.openweathermap.org/data/2.5/onecall?units=imperial&lat=${lat}&lon=${lng}&appid=${process.env.OPEN_WEATHER_MAP_API_KEY}`
+      ).then(response => response.json());
+  

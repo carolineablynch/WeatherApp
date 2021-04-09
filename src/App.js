@@ -26,3 +26,24 @@ function App() {
             setError("Unable to retrieve weather data");
           }
       }, [location]);
+
+      return (
+        <>
+          <Container fluid style={{ textAlign: "center" }}>
+            <h1 className="display-4">Weather Dashboard</h1>
+            {error && error}
+            <Search setLocation={setLocation} />
+            {fetching && (
+              <>
+                <Loader type="Puff" color="black" height={100} width={100} />
+                <h2>Retrieving Weather Data...</h2>
+              </>
+            )}
+            {weatherData && <Weather weather={weatherData} location={location} />}
+          </Container>
+        </>
+      );
+    }
+    
+    export default App;
+    
